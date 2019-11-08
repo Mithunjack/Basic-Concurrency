@@ -1,24 +1,25 @@
 package com.company;
-import java.util.concurrent.Semaphore;
 
 public class Stick{
-    Semaphore sem;
-    Stick(){
-        sem = new Semaphore(1);
-    }
-    public void pickStick(){
+    boolean isAvailable = true;
+
+    public synchronized void pickStick(){
             System.out.println("Status: Picked stick");
             try {
-                this.sem.acquire();
+                this.wait();
+                isAvailable = false;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
     }
-    public void dropStick(){
+    public synchronized void dropStick(){
         System.out.println("Status: droped stick");
-        this.sem.release();
+        isAvailable = true;
+        this.notify();
     }
     public boolean isAvailable(){
-        return this.sem.availablePermits() > 0;
+        if (isAvailable){
+            return true;
+        } else return false;
     }
 }
