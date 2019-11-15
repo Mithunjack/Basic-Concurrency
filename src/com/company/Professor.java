@@ -2,25 +2,30 @@ package com.company;
 
 public class Professor extends Thread{
     Stick left,right;
-    Professor(Stick left, Stick right){
+    int id;
+    Professor(int id,Stick left, Stick right){
         this.left = left;
         this.right = right;
+        this.id = id;
     }
     public void run(){
             this.eat();
     }
-    public void eat(){
-        while (true){
-            this.left.pickStick();
-            if ( this.right.isAvailable()){
-                this.right.pickStick();
-                this.left.dropStick();
-                this.right.dropStick();
-            }
-            else {
-                this.left.dropStick();
+    public void eat() {
+        while (true) {
+
+            synchronized (this.left) {
+                synchronized (this.right) {
+                    System.out.println(id + " Left one picked");
+                    this.left.pickStick();
+                    System.out.println(id + " right one picked");
+                    this.right.pickStick();
+                    System.out.println(id + " Left one dropped");
+                    this.left.dropStick();
+                    System.out.println(id + " right one dropped");
+                    this.right.dropStick();
+                }
             }
         }
     }
-
 }

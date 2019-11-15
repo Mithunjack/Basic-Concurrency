@@ -9,11 +9,11 @@ public class Main {
         Stick stk4 = new Stick();
         Stick stk5 = new Stick();
 
-        Professor prof1 = new Professor(stk1,stk2);
-        Professor prof2 = new Professor(stk2,stk3);
-        Professor prof3 = new Professor(stk3,stk4);
-        Professor prof4 = new Professor(stk4,stk5);
-        Professor prof5 = new Professor(stk5,stk1);
+        Professor prof1 = new Professor(1,stk1,stk2);
+        Professor prof2 = new Professor(2,stk2,stk3);
+        Professor prof3 = new Professor(3,stk3,stk4);
+        Professor prof4 = new Professor(4,stk4,stk5);
+        Professor prof5 = new Professor(5,stk5,stk1);
 
         prof1.start();
         prof2.start();
