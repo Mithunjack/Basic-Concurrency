@@ -16,6 +16,8 @@ public class Stick{
         available = true;
     }
     public synchronized boolean isAvailable(){
+
+       //return //this.sem.availablePermits() > 0;
         return available;
     }
 }
