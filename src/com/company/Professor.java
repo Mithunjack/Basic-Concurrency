@@ -7,12 +7,12 @@ public class Professor extends Thread{
         this.right = right;
     }
     public void run(){
-        this.eat();
+            this.eat();
     }
     public void eat(){
         while (true){
             this.left.pickStick();
-            if ( this.right.isAvailable() == true){
+            if ( this.right.isAvailable()){
                 this.right.pickStick();
                 this.left.dropStick();
                 this.right.dropStick();
