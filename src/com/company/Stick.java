@@ -5,17 +5,19 @@ public class Stick{
 
     public synchronized void pickStick(){
             System.out.println("Status: Picked stick");
-            try {
-                this.wait();
-                isAvailable = false;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            while (!isAvailable){
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            isAvailable=true;
     }
     public synchronized void dropStick(){
-        System.out.println("Status: droped stick");
+        System.out.println("Status: dropped stick");
+        notifyAll();
         isAvailable = true;
-        this.notify();
     }
     public boolean isAvailable(){
         if (isAvailable){
