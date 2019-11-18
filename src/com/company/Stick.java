@@ -2,22 +2,18 @@ package com.company;
 import java.util.concurrent.Semaphore;
 
 public class Stick{
-    boolean available;
+    boolean available=true;
     public synchronized void pickStick(){
-        System.out.println("Status:pick");
+    //    System.out.println("Status:pick");
         available = false;
-  /*      try{
-            Thread.sleep(1000);
-        }catch(Exception e){System.out.println(e);}
-*/
     }
+
     public synchronized void dropStick(){
-        System.out.println("Status: drop");
+  //      System.out.println("Status: drop");
         available = true;
     }
-    public synchronized boolean isAvailable(){
 
-       //return //this.sem.availablePermits() > 0;
+    public boolean isAvailable(){
         return available;
     }
 }
